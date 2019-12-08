@@ -13,7 +13,7 @@
   <div class="container">
 
     <div class="jumbotron text-center">
-      <h1>Mission to Mars</h1>
+      <h1><strong>Mission to Mars</strong></h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
 
@@ -21,76 +21,75 @@
     <div class="row" >
       <div class="col-lg-12">
         <h3>Latest Mars News</h3>
-        <br>
-        <h4>{{mars_data.news_title}}</h4>
+        <h5>{{mars_data.news_title}}</h5>
         <p>{{mars_data.news_p}}</p>
       </div>
     </div>
     <div class="row" >
     <!--Featured Mars Image-->
       <div class ='col-lg-8'>
-        <img src="{{mars_data.featured_image_url}}" alt="Feartured Mars Image" height = '450'>
+        <h3>Featured Mars Image</h3>
+        <img src="{{mars_data.featured_image_url}}" alt="Feartured Mars Image" height = '550' width = '720'>
       </div>
     
 
     <!--Mars Weather Data-->
       <div class ='col-lg-4'>
-        <div class="card" style="width: 24rem;">
+        <div class="card" style="width: 22rem;">
           <div class="card-body">
             <h5 class="card-title">Current Weather on Mars</h5>
             <p class="card-text">{{mars_data.mars_weather}}</p>
           </div>
         </div> <!--card-->
+        <br>
         <div>
         <h5>Mars Facts</h5>
          {{mars_data.mars_facts_html|safe}}
         </div>
       </div><!--class-->
     </div><!--row-->
+  
+  <div>
+    <br>
+    <h3>Mars Hemispheres</h3>
+    <hr>
   </div>
-  <!--Mars Hemispheres-->
-    <div class="row" >
-      <div class="col-lg-12">
-        <h3>Mars Hemispheres</h3>
-        <img src="{{mars_data.hemisphere_image_urls[0]["img_url"] }}" class="card-img-top" alt="valles_mMarineris">
 
+   <div class="row row-cols-1 row-cols-md-2">
+    <div class="col mb-4">
+      <div class="card">
+        <img src="{{mars_data.hemisphere_image_urls[0]["img_url"]}}" class="card-img-top" alt="Cerberus Hemisphere">
+        <div class="card-body">
+          <h5 class="card-title">{{mars_data.hemisphere_image_urls[0]["title"]}}</h5>
+        </div>
       </div>
     </div>
-
-    <!-- <div class="row row-cols-1 row-cols-md-2">
-        <div class="col mb-4">
-          <div class="card">
-            <img src="{{mars_data.hemisphere_image_urls[0]["img_url"] }}" class="card-img-top" alt="valles_mMarineris">
-            <div class="card-body">
-              <h5 class="card-title">{{mars_data.hemisphere_image_urls[0]["title"]}}</h5>
-            </div>
-          </div>
+    <div class="col mb-4">
+      <div class="card">
+        <img src="{{mars_data.hemisphere_image_urls[1]["img_url"]}}" class="card-img-top" alt="Schiaparelli Hemisphere">
+        <div class="card-body">
+          <h5 class="card-title">{{mars_data.hemisphere_image_urls[1]["title"]}}</h5>
         </div>
-        <!-- <div class="col mb-4">
-          <div class="card">
-            <img src={{mars_data.hemisphere_image_urls[1].img_url}} class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{mars_data.hemisphere_image_urls[1].title}}</h5>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card">
+        <img src="{{mars_data.hemisphere_image_urls[1]["img_url"]}}" class="card-img-top" alt="Syrtis Major Hemisphere">
+        <div class="card-body">
+          <h5 class="card-title">{{mars_data.hemisphere_image_urls[2]["title"]}}</h5>
         </div>
-        <div class="col mb-4">
-          <div class="card">
-            <img src={{mars_data.hemisphere_image_urls[2].img_url}} class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{mars_data.hemisphere_image_urls[2].title}}</h5>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card">
+        <img src="{{mars_data.hemisphere_image_urls[1]["img_url"]}}" class="card-img-top" alt="Valles Marineris Hemisphere">
+        <div class="card-body">
+          <h5 class="card-title">{{mars_data.hemisphere_image_urls[2]["title"]}}</h5>
         </div>
-        <div class="col mb-4">
-          <div class="card">
-            <img src={{mars_data.hemisphere_image_urls[3].img_url}} class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{mars_data.hemisphere_image_urls[3].title}}</h5>
-            </div>
-          </div> -->
-    </div> -->
+      </div>
+    </div>
   </div>
+</div>
 </body>
 
 </html>

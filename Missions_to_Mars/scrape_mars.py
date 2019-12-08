@@ -95,58 +95,32 @@ def scrape():
     mars_data["mars_facts_html"]=mars_facts_html
   
 # #   <<Scrape Mars Hemisphere>>
-#     browser = init_browser()
+    browser = init_browser()
 
-#     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
-#     browser.visit(url)
-#     time.sleep(1)
+    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(url)
+    time.sleep(1)
 
-#     html = browser.html
-#     soup = BeautifulSoup(html, "html.parser")
+    html = browser.html
+    soup = BeautifulSoup(html, "html.parser")
 
-# #   scrap Mars Hemisphere url
-#     mars_hemispheres = soup.find_all('div', class_ = 'item')
-#     base_url='https://astrogeology.usgs.gov'
-#     hemisphere_image_urls=[]
+#   scrap Mars Hemisphere url
+    mars_hemispheres = soup.find_all('div', class_ = 'item')
+    base_url='https://astrogeology.usgs.gov'
+    hemisphere_image_urls=[]
 
-#     for mars_hemisphere in mars_hemispheres:
-#         link = mars_hemisphere.find('a')
-#         href = link['href']
-#         browser.visit(base_url+href)
-#         html = browser.html
-#         soup = BeautifulSoup(html, 'html.parser')
-#         title = soup.find('h2',class_='title').text.split('Enhanced')[0]
-#         img_url = soup.find_all('li')[1].a['href']
-#         hemisphere_image_urls.append({'title':title,'img_url':img_url})
-#         browser.back()
-#     mars_data["hemisphere_image_urls"]=hemisphere_image_urls
-# #   Quite the browser after scraping
-#     browser.quit()
+    for mars_hemisphere in mars_hemispheres:
+        link = mars_hemisphere.find('a')
+        href = link['href']
+        browser.visit(base_url+href)
+        html = browser.html
+        soup = BeautifulSoup(html, 'html.parser')
+        title = soup.find('h2',class_='title').text.split('Enhanced')[0]
+        img_url = soup.find_all('li')[0].a['href']
+        hemisphere_image_urls.append({'title':title,'img_url':img_url})
+        browser.back()
+    mars_data["hemisphere_image_urls"]=hemisphere_image_urls
+#   Quite the browser after scraping
+    browser.quit()
 
-#     return mars_data
-
-#Mars Hemispheres
-    url_hemisphere = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
-
-    response = requests.get(url_hemisphere)
-    soup = BeautifulSoup(response.text, "html.parser")
-
-    results = soup.find_all('div', class_="item")
-
-    url_high_resolution = []
-    for result in results:
-        url_high_resolution.append(result.a['href'])
-
-    hemisphere_image_urls = []
-    for i in url_high_resolution:
-        response = requests.get(f"https://astrogeology.usgs.gov{i}")
-        soup = BeautifulSoup(response.text, "html.parser")
-    
-        title = soup.find('h2', class_='title').text.split("Enhanced")[0]
-        img_url = soup.find('li').a['href']
-        hemisphere_image_urls.append({"title":title,"img_url":img_url})
-
-        mars_data["hemisphere_image_urls"] = hemisphere_image_urls
-
-    # Return results
     return mars_data
