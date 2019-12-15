@@ -93,8 +93,9 @@ def scrape():
     mars_facts=tables[0].rename(columns={0: 'Description', 1: 'Value'}).set_index('Description')
     mars_facts_html = mars_facts.to_html(index = True, header =True).replace('\n','').replace('right','left')
     mars_data["mars_facts_html"]=mars_facts_html
-  
-#   <<Scrape Mars Hemisphere>>
+
+
+ #   <<Scrape Mars Hemisphere>>
     browser = init_browser()
 
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
@@ -113,6 +114,7 @@ def scrape():
         link = mars_hemisphere.find('a')
         href = link['href']
         browser.visit(base_url+href)
+        time.sleep(1)
         html = browser.html
         soup = BeautifulSoup(html, 'html.parser')
         title = soup.find('h2',class_='title').text.split('Enhanced')[0]
@@ -121,6 +123,5 @@ def scrape():
         browser.back()
     mars_data["hemisphere_image_urls"]=hemisphere_image_urls
 #   Quite the browser after scraping
-    browser.quit()
-
+    browser.quit()   
     return mars_data
