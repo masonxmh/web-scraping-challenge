@@ -1,0 +1,18 @@
+h1{
+    font-size: 50px;
+}
+.jumbotron{
+    background:#EEEEEE;
+}
+.btn{
+    background:#2A7BBD;
+}
+.card{
+    border-width: 3px;
+}
+hr{
+    line-height: 3px;
+}
+.dataframe{
+    font-size:5px;
+}
